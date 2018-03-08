@@ -1,0 +1,23 @@
+# `sudo:false` for faster builds.
+sudo: false
+language: node_js
+
+# The tests are broken, so we skip it for now
+# Needed for Firefox
+# before_script:
+#   - export DISPLAY=:99.0
+#   - sh -e /etc/init.d/xvfb start
+
+script:
+  - script/build.sh
+
+# Remove /dist/ from .gitignore
+before_deploy:
+  - sed -i '/\/dist\//d' ./.gitignore
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master

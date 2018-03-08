@@ -1,0 +1,4 @@
+/node_modules/
+/selenium-screenshot.png
+npm-debug.log
+*~
